@@ -3,9 +3,15 @@ using UnityEngine;
 
 namespace ShopMVC
 {
+    public enum State
+    {
+        OPTIONS,
+        MAIN,
+        CONFIRM
+    }
     public class ShopModel
     {
-        List<Item> _inventory;
+        List<ItemData> _inventory;
         public State CurrentState { get; private set; } = State.OPTIONS;
         public void ChangeState(State newState)
         {

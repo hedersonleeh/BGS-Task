@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-[System.Serializable]public class Item
+[System.Serializable]public struct ItemData
 {
     [System.Serializable]
     public enum Type
@@ -16,4 +16,9 @@
     public string displayName;
     public string description;
     public string resourcePath;
+  
+    public Texture2D LoadAtlas()
+    {
+        return Resources.Load<Texture2D>(resourcePath);
+    }
 }

@@ -6,7 +6,7 @@ namespace ShopMVC
 {
     public class ShopView : MonoBehaviour
     {
-        public void DisplayItems(List<Item> items) { }
+        public void DisplayItems(List<ItemData> items) { }
         public void OnItemSelect() { }
         public void OnConfirmSelect() { }
     }
