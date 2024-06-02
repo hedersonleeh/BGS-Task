@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private float speed;
     [SerializeField, Min(0)] private float shotCooldownTime = 0.1f;
-    public Rigidbody Rigidbody => _rb;
+    AnimatorController _animatorController;
+    public Rigidbody2D Rigidbody => _rb;
     private Vector2 input;
+    private void Awake()
+    {
+        _animatorController = GetComponent<AnimatorController>();
+    }
     private void Update()
     {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
+        _animatorController.UpdateAnimations(input);
     }
     private void FixedUpdate()
     {
@@ -21,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovementFixedUpdate(Vector2 input)
     {
-        var movement = (new Vector3(input.x, 0, input.y).normalized * Time.deltaTime * speed) + _rb.position;
+        var movement = (new Vector2(input.x, input.y).normalized * Time.deltaTime * speed) + (_rb.position);
         _rb.MovePosition(movement);
     }
 }
