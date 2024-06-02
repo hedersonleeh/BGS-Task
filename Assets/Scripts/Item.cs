@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
-public class Item
+[System.Serializable]public class Item
 {
+    [System.Serializable]
     public enum Type
     {
-
+        WEAPON,
+        CLOTHES,
+        CONSUMABLE,
     }
     public Texture icon;
     public string id;
