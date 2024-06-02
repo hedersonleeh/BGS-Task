@@ -5,16 +5,32 @@ namespace ShopMVC
 {
     public class ShopSystem : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] private ShopView _view;
+        ShopModel _model;
+        ShopController _controller;
+        public bool _open;
 
+        private void Awake()
+        {
+            _model = new ShopModel();
+            _controller = new ShopController(_model, _view);
         }
-
-        // Update is called once per frame
-        void Update()
+        [ContextMenu("Test Open")]
+        public void OpenShop()
         {
-
+            _open = true;
+            _view.gameObject.SetActive(_open);
+        }
+        [ContextMenu("Test close")]
+        public void CloseShop()
+        {
+            _open = false;
+            _view.gameObject.SetActive(_open);
+        }
+        private void Update()
+        {
+            if (_open)
+                _controller.InputUpdate();
         }
     }
 }
