@@ -13,11 +13,22 @@ namespace ShopMVC
         [SerializeField] private ScrollRect _scrollRect;
         [SerializeField] private RectTransform _selector;
         [SerializeField] private ItemSlot _slotPrefab;
+        [SerializeField] private GameObject[] _shopScreens;
+
+
         public RectTransform content { get { return _scrollRect.content; } }
         public int currentItemSelectedIndex { get; private set; }
-        public OnItemHoverEvent hoverEvent { get; private set; }
-        public OnItemSelectEvent selectEvent { get; private set; }
+        public OnItemHoverEvent hoverEvent;
+        public OnItemSelectEvent selectEvent;
 
+        private void OnEnable()
+        {
+            foreach (var screen in _shopScreens)
+            {
+                screen.gameObject.SetActive(false);
+            }
+            _shopScreens[0].gameObject.SetActive(true);
+        }
         public void FillItems(List<ItemData> items)
         {
             foreach (Transform child in content.transform)
@@ -29,7 +40,7 @@ namespace ShopMVC
             }
         }
         public void OnItemSelect(ItemSlot slot) 
-        {
+        { 
             selectEvent?.Invoke(slot);
         }
         public void OnItemHover(ItemSlot slot)
@@ -43,9 +54,31 @@ namespace ShopMVC
         }
         public void HoverOverItem(int index)
         {
-            
+            var rt = _scrollRect.content.transform.GetChild(index);
+            OnItemHover(rt.GetComponent<ItemSlot>());
         }
 
-        
+        public void ShowConfirmationWindow(ItemSlot slot)
+        {
+        }
+       
+        public void OnShopStateChange(State newState)
+        {
+            foreach (var screen in _shopScreens)
+            {
+                screen.gameObject.SetActive(false);
+            }
+            _shopScreens[(int)newState].gameObject.SetActive(true);
+            switch (newState)
+            {
+                case State.OPTIONS:
+                    break;
+                case State.BUY:
+                    break;
+                case State.CONFIRM:
+                    break;
+            }
+        }
+
     }
 }

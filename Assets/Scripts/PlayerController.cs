@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(0)] private float shotCooldownTime = 0.1f;
     AnimatorController _animatorController;
     public Rigidbody2D Rigidbody => _rb;
+    public Inventory inventory { get; private set; }
     private Vector2 input;
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (GlobalVariables.PlayerIsBusy) return;
         MovementFixedUpdate(input);
     }
 
