@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace ShopMVC
 {
-   [System.Serializable] public enum State
+    [System.Serializable]
+    public enum State
     {
         OPTIONS,
         BUY,
@@ -33,26 +34,27 @@ namespace ShopMVC
             CurrentState = newState;
             onStateChange?.Invoke(newState);
         }
-         
+
         public bool TryBuyItem(Inventory playerInvetory, ItemData item)
         {
-            if(playerInvetory.money >= item.price)
+            if (playerInvetory.money >= item.price)
             {
                 playerInvetory.AddItem(item);
-                playerInvetory.SpendMoney( item.price);
+                playerInvetory.SpendMoney(item.price);
                 inventory.Remove(item);
                 onInventoryUpdate?.Invoke();
                 return true;
             }
             return false;
         }
-        public void SellItem(Inventory playerInvetory,ItemData item)
+        public void SellItem(Inventory playerInvetory, ItemData item)
         {
-            playerInvetory.DiscardItem(item.ID);
-            inventory.Add(item);
-            playerInvetory.GainMoney(item.price);
-
-            onInventoryUpdate?.Invoke();
+            if (playerInvetory.DiscardItem(item.ID))
+            {
+                inventory.Add(item);
+                playerInvetory.GainMoney(item.price);
+                onInventoryUpdate?.Invoke();
+            }
         }
     }
 }

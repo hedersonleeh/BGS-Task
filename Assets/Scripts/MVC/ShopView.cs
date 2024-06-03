@@ -10,6 +10,7 @@ namespace ShopMVC
 
     public class ShopView : ViewBase
     {
+        private ShopController _controller;
         [SerializeField] private ScrollRect _scrollRect;
         [SerializeField] private RectTransform _selector;
         [SerializeField] private ItemSlot _slotPrefab;
@@ -24,7 +25,10 @@ namespace ShopMVC
         public RectTransform content { get { return _scrollRect.content; } }
         public int currentItemSelectedIndex { get; private set; }
 
-
+        public void AssingController(ShopController controller)
+        {
+            _controller = controller;
+        }
         private void OnEnable()
         {
             foreach (var screen in _shopScreens)
@@ -90,7 +94,10 @@ namespace ShopMVC
                     _Menutitle.text = "Selling";
                     break;
                 case State.CONFIRM:
-                    _Menutitle.text = "Confirmation";
+                    var rt = _scrollRect.content.transform.GetChild(currentItemSelectedIndex);
+
+                    var slot=rt.GetComponent<ItemSlot>();
+                    _Menutitle.text = "PRICE: "+ slot.data.price.ToString()+"$";
                     break;
                 default:
                     break;
@@ -105,7 +112,10 @@ namespace ShopMVC
         public void UpdatePlayerMoney(string money)
         {
             _moneyText.text = "Money: " + money + "$";
-
+        }
+        public void OnBack()
+        {
+            _controller.Back();
         }
 
     }

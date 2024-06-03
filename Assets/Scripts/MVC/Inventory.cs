@@ -30,29 +30,20 @@ public class Inventory
         if (!_inventory.ContainsKey(newItem.ID))
         {
             _inventory.Add(newItem.ID, newItem);
-        }
-        else
-        {
-            var invetoryItem = _inventory[newItem.ID];
-            invetoryItem.quantity++;
-            _inventory[newItem.ID] = invetoryItem;
-        }
+        }       
     }
-    public void DiscardItem(string id)
+    public bool DiscardItem(string id)
     {
-        if (_inventory.ContainsKey(id))
+        if (_inventory.TryGetValue(id,out var item))
         {
-            var item = _inventory[id];
-            item.quantity -= 1;
-            if (item.quantity <= 0)
-                _inventory.Remove(id);
-            else
-                _inventory[id] = item;
+            _inventory.Remove(item.ID);
+            return true;
         }
+        return false;
     }
     public int SpendMoney(int amount)
     {
-        money= Mathf.Max(0, money - amount);
+        money = Mathf.Max(0, money - amount);
         return money;
     }
     public int GainMoney(int amount)

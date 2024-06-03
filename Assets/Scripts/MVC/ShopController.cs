@@ -18,6 +18,7 @@ namespace ShopMVC
             _player = player;
             _shopModel.onStateChange += _shopView.OnShopStateChange;
             _shopModel.onStateChange += OnShopStateChange;
+            _shopView.AssingController(this);
             _shopView.selectEvent += OnSelectItem;
             onShopCloseEvent += OnClose;
             _shopModel.onInventoryUpdate += OnInventoryUpdateReaction;
@@ -29,7 +30,6 @@ namespace ShopMVC
             onShopCloseEvent -= OnClose;
             _shopView.selectEvent -= OnSelectItem;
             _shopModel.onStateChange -= OnShopStateChange;
-
         }
 
         public void InputUpdate()
@@ -49,30 +49,7 @@ namespace ShopMVC
 
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Cancel"))
             {
-                switch (_shopModel.CurrentState)
-                {
-                    case State.OPTIONS:
-                        onShopCloseEvent?.Invoke();
-                        break;
-                    case State.BUY:
-                    case State.SELL:
-                        _shopModel.ChangeState(State.OPTIONS);
-                        break;
-                    case State.CONFIRM:
-                        _shopModel.ChangeState(_shopModel.LastState);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            if (Input.GetButtonDown("Jump"))
-            {
-                if (_shopModel.CurrentState == State.BUY || _shopModel.CurrentState == State.SELL)
-                {
-                    var selected = _shopView.content.GetChild(_shopView.currentItemSelectedIndex);
-                    var slot = selected.GetComponent<ItemSlot>();
-                    OnSelectItem(slot);
-                }
+                Back();
             }
         }
         private void OnSelectItem(ItemSlot slot)
@@ -92,11 +69,6 @@ namespace ShopMVC
                          BuyItem();
                      }, () =>
                      {
-                         if (_shopModel.inventory.Count <= 0)
-                         {
-                             _shopModel.ChangeState(State.OPTIONS);
-                             return;
-                         }
                          _shopModel.ChangeState(State.BUY);
                      });
                     break;
@@ -108,17 +80,12 @@ namespace ShopMVC
                         SellItem();
                     }, () =>
                     {
-                        if (_player.inventory.GetItems().Count <= 0)
-                        {
-
-                            _shopModel.ChangeState(State.OPTIONS);
-                            return;
-                        }
                         _shopModel.ChangeState(State.SELL);
                     });
                     break;
             }
         }
+
 
         private void OnClose()
         {
@@ -152,9 +119,11 @@ namespace ShopMVC
                     _shopView.DisableButtons(_shopModel.inventory.Count <= 0, _player.inventory.GetItems().Count <= 0);
                     break;
                 case State.BUY:
+
                     _shopView.FillItems(_shopModel.inventory);
                     break;
                 case State.SELL:
+
                     _shopView.FillItems(_player.inventory.GetItems());
                     break;
                 case State.CONFIRM:
@@ -171,6 +140,8 @@ namespace ShopMVC
                 if (_shopModel.TryBuyItem(_player.inventory, _shopModel.currentItemSelected))
                 {
                     _shopModel.ChangeState(_shopModel.LastState);
+                    if (_shopModel.inventory.Count <= 0)
+                        _shopModel.ChangeState(State.OPTIONS);
                 }
                 else
                 {
@@ -184,6 +155,8 @@ namespace ShopMVC
             {
                 _shopModel.SellItem(_player.inventory, _shopModel.currentItemSelected);
                 _shopModel.ChangeState(_shopModel.LastState);
+                if (_player.inventory.GetItems().Count <= 0)
+                    _shopModel.ChangeState(State.OPTIONS);
             }
         }
         public void OpenCloseShop(bool value)
@@ -191,5 +164,24 @@ namespace ShopMVC
             _shopModel.ChangeState(State.OPTIONS);
             _shopView.gameObject.SetActive(value);
         }
+        public void Back()
+        {
+            switch (_shopModel.CurrentState)
+            {
+                case State.OPTIONS:
+                    onShopCloseEvent?.Invoke();
+                    break;
+                case State.BUY:
+                case State.SELL:
+                    _shopModel.ChangeState(State.OPTIONS);
+                    break;
+                case State.CONFIRM:
+                    _shopModel.ChangeState(_shopModel.LastState);
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }
