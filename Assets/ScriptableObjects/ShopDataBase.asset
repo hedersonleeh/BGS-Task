@@ -52,7 +52,7 @@ MonoBehaviour:
     displayName: Green Underware
     description: 'Silk Underwear: Comfortable and light, offering basic protection.'
     tint: {r: 0.36743474, g: 1, b: 0, a: 1}
-    _atlas: {fileID: 2800000, guid: 801bcd87b69be0f4780a52b42ada5368, type: 3}
+    _atlas: {fileID: 2800000, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
   - icon: {fileID: 255868905, guid: 3a8d120bb30beda4baf4653fad592fa5, type: 3}
     type: 0
     quantity: 1
@@ -70,7 +70,7 @@ MonoBehaviour:
     tint: {r: 1, g: 1, b: 1, a: 1}
     _atlas: {fileID: 2800000, guid: 92df12ce5b298a344afe56889ed48277, type: 3}
   - icon: {fileID: -173205120, guid: 030b649503c53aa469006ae646aaac4c, type: 3}
-    type: 0
+    type: 2
     quantity: 1
     price: 25
     displayName: Hair
@@ -78,7 +78,7 @@ MonoBehaviour:
     tint: {r: 1, g: 1, b: 1, a: 1}
     _atlas: {fileID: 2800000, guid: 030b649503c53aa469006ae646aaac4c, type: 3}
   - icon: {fileID: 35467022, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
-    type: 0
+    type: 2
     quantity: 1
     price: 100
     displayName: Hair
@@ -86,7 +86,7 @@ MonoBehaviour:
     tint: {r: 0.7056604, g: 0, b: 0.5972893, a: 1}
     _atlas: {fileID: 2800000, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
   - icon: {fileID: 35467022, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
-    type: 0
+    type: 2
     quantity: 1
     price: 50
     displayName: Hair

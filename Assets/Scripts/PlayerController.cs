@@ -1,3 +1,4 @@
+using InventoryMVC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,19 +8,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField, Min(0)] private float shotCooldownTime = 0.1f;
     AnimatorController _animatorController;
+    [SerializeField] private InventoryView _invetoryView;
+    [SerializeField] private Camera _previewCamera;
     public Rigidbody2D Rigidbody => _rb;
     public Inventory inventory { get; private set; }
     private Vector2 input;
     private void Awake()
     {
         _animatorController = GetComponent<AnimatorController>();
-        inventory = new Inventory(2000,new List<ItemData>());
+        inventory = new Inventory(2000, new List<ItemData>());
     }
+
     private void Update()
     {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
         _animatorController.UpdateAnimations(input);
+
+        if (Input.GetKeyDown(KeyCode.Tab) && !GlobalVariables.PlayerIsBusy)
+        {
+            _invetoryView.ToggleView(true);
+        }
+        _previewCamera.gameObject.SetActive(GlobalVariables.PlayerIsBusy);
     }
     private void FixedUpdate()
     {

@@ -227,6 +227,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3911a14ef2c814d82b2c1ad2828236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &237405678 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3981877176753024517, guid: 4162e64f3c0933048bffe7ea2c808565, type: 3}
+  m_PrefabInstance: {fileID: 1174503307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &269761076
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +425,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -175
       objectReference: {fileID: 0}
+    - target: {fileID: 5787232455142175849, guid: 232e891c6942ccb4387a748d8bf864d9, type: 3}
+      propertyPath: _mainCanvas
+      value: 
+      objectReference: {fileID: 1961362644}
     - target: {fileID: 6462815530652636574, guid: 232e891c6942ccb4387a748d8bf864d9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2210,6 +2219,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7702198818319174907, guid: 232e891c6942ccb4387a748d8bf864d9, type: 3}
   m_PrefabInstance: {fileID: 311938656}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &945386017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5787232455142175849, guid: 232e891c6942ccb4387a748d8bf864d9, type: 3}
+  m_PrefabInstance: {fileID: 311938656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914b59ad102c6a6438f11209e74e89be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1100370564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3151,6 +3171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7463316929703500202, guid: 4162e64f3c0933048bffe7ea2c808565, type: 3}
+      propertyPath: _invetoryView
+      value: 
+      objectReference: {fileID: 945386017}
+    - target: {fileID: 7463316929703500202, guid: 4162e64f3c0933048bffe7ea2c808565, type: 3}
+      propertyPath: _previewCamera
+      value: 
+      objectReference: {fileID: 237405678}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

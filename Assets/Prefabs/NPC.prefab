@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4758556576124189651}
   - component: {fileID: 6993721047185222982}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7845075264101862266}
   - component: {fileID: 8239110730104372915}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4344327085939928739}
   - component: {fileID: 8115633757159807912}
   - component: {fileID: 4255559059265015030}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7659772605607520235}
   - component: {fileID: 7701294348725925388}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: pants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 196674695776397110}
   - component: {fileID: 4474734759189046200}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 1194313527359460052}
   - component: {fileID: 5867290772545821149}
   - component: {fileID: 1251199983219910720}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1260468860325569608}
   - component: {fileID: 3209657726184359640}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: shoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8728972190168111453}
   - component: {fileID: 1084423432007322818}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Body (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5328674978581727756}
   - component: {fileID: 1651664796035178641}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

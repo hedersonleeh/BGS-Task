@@ -8,6 +8,7 @@ namespace InventoryMVC
 {
     public class InventoryView : ViewBase
     {
+        [SerializeField] private Canvas _mainCanvas;
         [SerializeField] private ScrollRect _scrollRect;
         [SerializeField] private RectTransform _selector;
         [SerializeField] private RectTransform _bodySlot;
@@ -15,9 +16,11 @@ namespace InventoryMVC
         [SerializeField] private RectTransform _hairSlot;
         List<ItemSlot> _items;
 
-        private ItemSlot _slotPrefab;
+        [SerializeField] private ItemSlot _slotPrefab;
         private InventoryModel _model;
         private InventoryController _controller;
+        public RectTransform content { get { return _scrollRect.content; } }
+        public int currentItemSelectedIndex { get; private set; }
         private void Awake()
         {
             var player = FindObjectOfType<PlayerController>();
@@ -29,13 +32,27 @@ namespace InventoryMVC
             _model.onEquip += SwapItems;
             selectEvent += _model.OnItemSelect;
         }
+
+        public void ToggleView(bool value)
+        {
+            GlobalVariables.PlayerIsBusy = value;
+            gameObject.SetActive(value);
+        }
+        private void OnEnable()
+        {
+            _controller.OnOpenInventory();
+        }
         private void OnDestroy()
         {
             _model.onEquip -= SwapItems;
             selectEvent -= _model.OnItemSelect;
         }
-        public RectTransform content { get { return _scrollRect.content; } }
-        public int currentItemSelectedIndex { get; private set; }
+
+        private void Update()
+        {
+            if (Input.GetButtonDown("Cancel"))
+                ToggleView(false);
+        }
 
         public override void OnItemSelect(ItemSlot slot)
         {
@@ -54,8 +71,10 @@ namespace InventoryMVC
             _items.Clear();
             foreach (var item in items)
             {
+                if (_model.isEquipped(item)) continue;
+                
                 var itemSlot = Instantiate(_slotPrefab, content);
-                itemSlot.FillInfo(item);
+                itemSlot.FillInfo(item, false);
                 _items.Add(itemSlot);
             }
             HoverItem(0);
@@ -74,34 +93,37 @@ namespace InventoryMVC
                 var item2 = _items.Find(x => oldItem.ID == x.data.ID);
                 StartCoroutine(MoveToSmooth(item2, _scrollRect.content));
             }
-            switch (newItem.type)
-            {
-                case ItemData.Type.HAT:
-                    StartCoroutine(MoveToSmooth(item1, _hatSlot));
-                    break;
-                case ItemData.Type.CLOTHES:
-                    StartCoroutine(MoveToSmooth(item1, _bodySlot));
-                    break;
-                case ItemData.Type.HAIR:
-                    StartCoroutine(MoveToSmooth(item1, _hairSlot));
-                    break;
-            }
+            if (item1)
+                switch (newItem.type)
+                {
+                    case ItemData.Type.HAT:
+                        StartCoroutine(MoveToSmooth(item1, _hatSlot));
+                        break;
+                    case ItemData.Type.CLOTHES:
+                        StartCoroutine(MoveToSmooth(item1, _bodySlot));
+                        break;
+                    case ItemData.Type.HAIR:
+                        StartCoroutine(MoveToSmooth(item1, _hairSlot));
+                        break;
+                }
         }
         IEnumerator MoveToSmooth(ItemSlot item, RectTransform targetRectTranform)
         {
-            item.transform.parent = null;
-            var initialPosition = item.transform.position;
+            var rt = item.GetComponent<RectTransform>();
+            rt.transform.parent = _mainCanvas.transform;
+            var initialPosition = rt.position;
             var finalPosition = targetRectTranform.transform.position;
             var stepTime = 0f;
-            var duration = 0.5f;
+            var duration = 0.25f;
             AnimationCurve smooth = AnimationCurve.EaseInOut(0, 0, 1, 1);
             while (stepTime < duration)
             {
-                stepTime += Time.deltaTime;
+                stepTime += Time.smoothDeltaTime;
                 var fixedDuration = stepTime / duration;
-                item.transform.position = Vector3.Lerp(initialPosition, finalPosition, smooth.Evaluate(fixedDuration));
+                rt.position = Vector3.Lerp(initialPosition, finalPosition, smooth.Evaluate(fixedDuration));
                 yield return new WaitForEndOfFrame();
             }
+            rt.position = finalPosition;
             item.transform.parent = targetRectTranform;
         }
 

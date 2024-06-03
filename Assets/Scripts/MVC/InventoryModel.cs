@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 namespace InventoryMVC
@@ -47,6 +48,11 @@ namespace InventoryMVC
                     break;
 
             }
+        }
+
+        internal bool isEquipped(ItemData item)
+        {
+            return (item.ID == equippedBody.ID || item.ID == equippedHair.ID || item.ID == equippedHat.ID);
         }
     }
 

@@ -12,12 +12,15 @@ public class PlayerClothes : MonoBehaviour
         {
             case ItemData.Type.HAT:
                 _hat.AssingAtlas(item.GetAtlas());
+                _hat.Tint(item.tint);
                 break;
             case ItemData.Type.CLOTHES:
                 _body.AssingAtlas(item.GetAtlas());
+                _body.Tint(item.tint); 
                 break;
             case ItemData.Type.HAIR:
                 _hair.AssingAtlas(item.GetAtlas());
+                _hair.Tint(item.tint);
                 break;
         }
     }

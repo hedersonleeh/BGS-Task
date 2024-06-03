@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 6085933639600416411}
   - component: {fileID: 2702160816035101685}
   - component: {fileID: 353673476949555499}
+  - component: {fileID: 375515768171052280}
   m_Layer: 3
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -319,6 +320,7 @@ MonoBehaviour:
   _rb: {fileID: 8368934708880378866}
   speed: 2.5
   shotCooldownTime: 0.1
+  _invetoryView: {fileID: 0}
 --- !u!50 &8368934708880378866
 Rigidbody2D:
   serializedVersion: 4
@@ -407,6 +409,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactionBubble: {fileID: 6640863797177485731}
+--- !u!114 &375515768171052280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4476262316253093840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f426736c0ed024409314fc807d31f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _body: {fileID: 5076240462402604901}
+  _hair: {fileID: 5616184551511801095}
+  _hat: {fileID: 8845079672423426080}
 --- !u!1 &6637187406023591778
 GameObject:
   m_ObjectHideFlags: 0

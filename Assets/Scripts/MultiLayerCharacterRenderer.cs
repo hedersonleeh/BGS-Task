@@ -13,9 +13,15 @@ public class MultiLayerCharacterRenderer : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
     }
-    public void AssingAtlas(Texture2D atlas)
+    public void AssingAtlas( Texture2D atlas)
     {
         _atlas = atlas;
+        lastIndex = -1;
+    }
+    public void Tint(Color tint)
+    {
+        _renderer.color = tint;
+           
     }
     public void UpdateAnimation(bool Xflip,int index)
     {

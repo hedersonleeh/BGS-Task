@@ -9,11 +9,11 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
     [SerializeField] private Image _iconDisplay;
     [SerializeField] private TextMeshProUGUI _nameDisplay;
     [SerializeField] private GameObject _priceTag;
-    private ShopView _view;
+    private ViewBase _view;
     public ItemData data { get; private set; }
     private void Awake()
     {
-        _view = GetComponentInParent<ShopView>();
+        _view = GetComponentInParent<ViewBase>();
     }
     public void FillInfo(ItemData data, bool displayPrice = true)
     {
