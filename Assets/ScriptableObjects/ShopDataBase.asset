@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b418eb6e568f79941a6b0d066303945f, type: 3}
+  m_Name: ShopDataBase
+  m_EditorClassIdentifier: 
+  _itemDatabase:
+  - icon: {fileID: 21300000, guid: 6350bc4211bb5084a82ee2810171c299, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Armor
+    description: 'Sturdy Plate Armor: Heavy steel protection against powerful attacks.'
+    tint: {r: 0.645283, g: 0.37805793, b: 0, a: 1}
+    _atlas: {fileID: 2800000, guid: e5a21320e05cc664fa1ac8b727ba1271, type: 3}
+  - icon: {fileID: 21300000, guid: 2b1a99e44a9183c4e8571e4161d207b9, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Armor
+    description: 'Sturdy Plate Armor: Heavy steel protection against powerful attacks.'
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    _atlas: {fileID: 2800000, guid: f5f07bac3dbb6cc429503e06da2cb8b0, type: 3}
+  - icon: {fileID: -1289296908, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Underware
+    description: 'Silk Underwear: Comfortable and light, offering basic protection.'
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    _atlas: {fileID: 2800000, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
+  - icon: {fileID: -1289296908, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Red Underware
+    description: 'Silk Underwear: Comfortable and light, offering basic protection.'
+    tint: {r: 1, g: 0, b: 0, a: 1}
+    _atlas: {fileID: 2800000, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
+  - icon: {fileID: -1289296908, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Green Underware
+    description: 'Silk Underwear: Comfortable and light, offering basic protection.'
+    tint: {r: 0.36743474, g: 1, b: 0, a: 1}
+    _atlas: {fileID: 2800000, guid: 801bcd87b69be0f4780a52b42ada5368, type: 3}
+  - icon: {fileID: 255868905, guid: 3a8d120bb30beda4baf4653fad592fa5, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Magic hat
+    description: 'Enchanted Hat: Boosts magic power and spellcasting ability.'
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    _atlas: {fileID: 2800000, guid: 3a8d120bb30beda4baf4653fad592fa5, type: 3}
+  - icon: {fileID: 209913004, guid: 92df12ce5b298a344afe56889ed48277, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Simple hat
+    description: 'Fashionable Hat: Stylish and versatile, perfect for any occasion'
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    _atlas: {fileID: 2800000, guid: 92df12ce5b298a344afe56889ed48277, type: 3}
+  - icon: {fileID: -173205120, guid: 030b649503c53aa469006ae646aaac4c, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Hair
+    description: 'Lustrous Hair: Shiny, healthy, and full of volume.'
+    tint: {r: 1, g: 1, b: 1, a: 1}
+    _atlas: {fileID: 2800000, guid: 030b649503c53aa469006ae646aaac4c, type: 3}
+  - icon: {fileID: 35467022, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Hair
+    description: 'Lustrous Hair: Shiny, healthy, and full of volume.'
+    tint: {r: 0.7056604, g: 0, b: 0.5972893, a: 1}
+    _atlas: {fileID: 2800000, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
+  - icon: {fileID: 35467022, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
+    type: 1
+    quantity: 1
+    price: 100
+    displayName: Hair
+    description: 'Lustrous Hair: Shiny, healthy, and full of volume.'
+    tint: {r: 0, g: 0.37334028, b: 0.7058824, a: 1}
+    _atlas: {fileID: 2800000, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}

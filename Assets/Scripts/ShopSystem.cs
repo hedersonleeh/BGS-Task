@@ -6,6 +6,7 @@ namespace ShopMVC
     public class ShopSystem : MonoBehaviour
     {
         [SerializeField] private ShopView _view;
+        [SerializeField] private ItemDatabaseScriptableObject _database;
         ShopModel _model;
         ShopController _controller;
         public bool _open;
@@ -16,6 +17,8 @@ namespace ShopMVC
             var player = FindObjectOfType<PlayerController>();
             _controller = new ShopController(player, _model, _view);
             _controller.onShopCloseEvent += CloseShop;
+
+            _view.FillItems(_database.GetItems());
             _view.gameObject.SetActive(false);
         }
         private void OnDestroy()

@@ -1,11 +1,13 @@
 ﻿using ShopMVC;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
-    [SerializeField] private Image _a;
+    [SerializeField] private Image _iconDisplay;
+    [SerializeField] private TextMeshProUGUI _nameDisplay;
     private ShopView _view;
     public ItemData data { get; private set; }
     private void Awake()
@@ -15,6 +17,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
     public void FillInfo( ItemData data)
     {
         this.data = data;
+        _iconDisplay.sprite = data.icon;
+        _nameDisplay.text = data.displayName;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

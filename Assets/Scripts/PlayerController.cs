@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _animatorController = GetComponent<AnimatorController>();
+        inventory = new Inventory(2000,new List<ItemData>());
     }
     private void Update()
     {

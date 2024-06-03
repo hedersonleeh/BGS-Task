@@ -6,10 +6,12 @@ public class ItemDatabaseScriptableObject : ScriptableObject
 {
     [SerializeField]private List<ItemData> _itemDatabase;
 
+    public List<ItemData> GetItems() => _itemDatabase;
+    public List<ItemData> GetItemsByType(ItemData.Type type) =>  _itemDatabase.FindAll(x=>x.type == type);
     public ItemData GetItem(string id)
     {
-      var found=  _itemDatabase.Find((item) => item.id == id);
-        Debug.Assert(!string.IsNullOrEmpty( found.id), $"Item not found on database id:{id}");
+      var found=  _itemDatabase.Find((item) => item.ID == id);
+        Debug.Assert(!string.IsNullOrEmpty( found.ID), $"Item not found on database id:{id}");
         return found; //retrun a copy
     }
 }

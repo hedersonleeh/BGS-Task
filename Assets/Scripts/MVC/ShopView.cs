@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,6 +15,8 @@ namespace ShopMVC
         [SerializeField] private RectTransform _selector;
         [SerializeField] private ItemSlot _slotPrefab;
         [SerializeField] private GameObject[] _shopScreens;
+        [SerializeField] private TextMeshProUGUI _itemDescriptionDisplay;
+        [SerializeField] private TextMeshProUGUI _itemNameDisplay;
 
 
         public RectTransform content { get { return _scrollRect.content; } }
@@ -60,6 +63,7 @@ namespace ShopMVC
 
         public void ShowConfirmationWindow(ItemSlot slot)
         {
+
         }
        
         public void OnShopStateChange(State newState)
