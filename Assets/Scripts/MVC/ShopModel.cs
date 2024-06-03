@@ -50,6 +50,8 @@ namespace ShopMVC
         {
             playerInvetory.DiscardItem(item.ID);
             inventory.Add(item);
+            playerInvetory.GainMoney(item.price);
+
             onInventoryUpdate?.Invoke();
         }
     }

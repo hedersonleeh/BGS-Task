@@ -26,25 +26,20 @@ namespace ShopMVC
         private void OnDestroy()
         {
             _controller.onShopCloseEvent -= CloseShop;
-
         }
         [ContextMenu("Test Open")]
         public void OpenShop()
         {
             _open = true;
-            _view.gameObject.SetActive(_open);
+            _controller.OpenCloseShop(_open);
             GlobalVariables.PlayerIsBusy = true;
         }
         [ContextMenu("Test close")]
         public void CloseShop()
         {
             _open = false;
-            _view.gameObject.SetActive(_open);
+            _controller.OpenCloseShop(_open);
             GlobalVariables.PlayerIsBusy = false;
-        }
-        public void BuyItem()
-        {
-            _controller.BuyItem();
         }
         public void GoToState(int newState)
         {

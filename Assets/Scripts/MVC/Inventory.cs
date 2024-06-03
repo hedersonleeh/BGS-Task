@@ -55,4 +55,9 @@ public class Inventory
         money= Mathf.Max(0, money - amount);
         return money;
     }
+    public int GainMoney(int amount)
+    {
+        money = Mathf.Max(0, money + amount);
+        return money;
+    }
 }

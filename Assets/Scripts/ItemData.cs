@@ -9,7 +9,7 @@ public struct ItemData
         CLOTHES,
         SHOES,
     }
-    public string ID => icon.name;
+    public string ID => icon.name +displayName;
     public Sprite icon;
     public Type type;
     public int quantity;

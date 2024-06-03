@@ -23,7 +23,7 @@ namespace ShopMVC
 
         public RectTransform content { get { return _scrollRect.content; } }
         public int currentItemSelectedIndex { get; private set; }
-      
+
 
         private void OnEnable()
         {
@@ -34,10 +34,9 @@ namespace ShopMVC
             _shopScreens[0].gameObject.SetActive(true);
         }
         public void FillItems(List<ItemData> items)
-        {       
+        {
             foreach (Transform child in content.transform)
             {
-                if (child == _selector) continue;
                 Destroy(child.gameObject);
             }
             foreach (var item in items)
@@ -45,8 +44,9 @@ namespace ShopMVC
                 var itemSlot = Instantiate(_slotPrefab, content);
                 itemSlot.FillInfo(item);
             }
+            HoverItem(0);
         }
-        public override void OnItemSelect(ItemSlot slot) 
+        public override void OnItemSelect(ItemSlot slot)
         {
             base.OnItemSelect(slot);
         }
@@ -55,21 +55,22 @@ namespace ShopMVC
             int index = slot.transform.GetSiblingIndex();
             var rt = _scrollRect.content.transform.GetChild(index);
             _selector.position = rt.position;
-            base.OnItemHover(slot);
             currentItemSelectedIndex = index;
+            base.OnItemHover(slot);
         }
-        public void HoverOverItem(int index)
+        public void HoverItem(int index)
         {
             var rt = _scrollRect.content.transform.GetChild(index);
+
             OnItemHover(rt.GetComponent<ItemSlot>());
         }
 
-        public void ShowConfirmationWindow(ItemSlot slot,string confirmMessage,System.Action confirmCallback,System.Action cancelCallback)
+        public void ShowConfirmationWindow(ItemSlot slot, string confirmMessage, System.Action confirmCallback, System.Action cancelCallback)
         {
-            _confirmationWindow.Updateinfo(confirmMessage,slot.data);
+            _confirmationWindow.Updateinfo(confirmMessage, slot.data);
             _confirmationWindow.AssingCallbacks(confirmCallback, cancelCallback);
         }
-       
+
         public void OnShopStateChange(State newState)
         {
             foreach (var screen in _shopScreens)
