@@ -3547,6 +3547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 223730670}
+  _database: {fileID: 11400000, guid: 7e96482c92bc5bf47ad45234952577a1, type: 2}
   _open: 0
 --- !u!4 &1707053085
 Transform:

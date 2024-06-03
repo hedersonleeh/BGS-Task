@@ -40,9 +40,13 @@ namespace ShopMVC
             _view.gameObject.SetActive(_open);
             GlobalVariables.PlayerIsBusy = false;
         }
+        public void BuyItem()
+        {
+            _controller.BuyItem();
+        }
         public void GoToState(int newState)
         {
-            _model.ChangeState((State) newState);
+            _model.ChangeState((State)newState);
         }
         private void Update()
         {

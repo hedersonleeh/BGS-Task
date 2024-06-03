@@ -50,4 +50,9 @@ public class Inventory
                 _inventory[id] = item;
         }
     }
+    public int SpendMoney(int amount)
+    {
+        money= Mathf.Max(0, money - amount);
+        return money;
+    }
 }

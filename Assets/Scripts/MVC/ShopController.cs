@@ -64,21 +64,27 @@ namespace ShopMVC
                 case State.BUY:
                     _shopModel.ChangeState(State.CONFIRM);
                     _shopView.ShowConfirmationWindow(slot);
+                   _shopModel.currentItemSelected = slot.data;
                     break;
-                case State.CONFIRM:
-                    if (_shopModel.TryBuyItem(_player.inventory, slot.data))
-                    {
-                    }
-                    else
-                    {
-                        Debug.LogError("Cant buy it");
-                    }
-                    break;
+
             }
         }
         private void OnClose()
         {
             _shopModel.ChangeState(State.OPTIONS);
+        }
+        public void BuyItem()
+        {
+            if (_shopModel.CurrentState == State.CONFIRM)
+            {
+                if (_shopModel.TryBuyItem(_player.inventory, _shopModel.currentItemSelected))
+                {
+                }
+                else
+                {
+                    Debug.LogError("Cant buy it");
+                }
+            }
         }
     }
 }

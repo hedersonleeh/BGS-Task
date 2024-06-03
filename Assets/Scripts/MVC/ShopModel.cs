@@ -17,6 +17,7 @@ namespace ShopMVC
         public State CurrentState { get; private set; } = State.OPTIONS;
         public delegate void OnStateChange(State newState);
         public OnStateChange onStateChange;
+        public ItemData currentItemSelected;
 
         public void ChangeState(State newState)
         {
@@ -24,8 +25,15 @@ namespace ShopMVC
             CurrentState = newState;
             onStateChange?.Invoke(newState);
         }
-        public bool TryBuyItem(Inventory inventory, ItemData item)
+        public bool TryBuyItem(Inventory playerInvetory, ItemData item)
         {
+            if(playerInvetory.money >= item.price)
+            {
+                playerInvetory.AddItem(item);
+                playerInvetory.SpendMoney( item.price);
+                
+                return true;
+            }
             return false;
         }
         public void SellItem(ItemData item)

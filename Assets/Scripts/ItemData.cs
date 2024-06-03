@@ -5,9 +5,9 @@ public struct ItemData
     [System.Serializable]
     public enum Type
     {
-        WEAPON,
+        HAT,
         CLOTHES,
-        CONSUMABLE,
+        SHOES,
     }
     public string ID => icon.name;
     public Sprite icon;

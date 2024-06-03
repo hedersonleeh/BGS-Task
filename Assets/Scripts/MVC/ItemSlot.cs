@@ -14,11 +14,28 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
     {
         _view = GetComponentInParent<ShopView>();
     }
-    public void FillInfo( ItemData data)
+    public void FillInfo(ItemData data)
     {
         this.data = data;
         _iconDisplay.sprite = data.icon;
+        _iconDisplay.enabled = data.icon != null;
         _nameDisplay.text = data.displayName;
+        _iconDisplay.color = data.tint;
+        //adjust the size according to itemType
+        switch (data.type)
+        {
+            case ItemData.Type.HAT:
+                _iconDisplay.transform.localScale *= 3;
+                _iconDisplay.rectTransform.anchoredPosition -= Vector2.up*70;
+                break;
+            case ItemData.Type.CLOTHES:
+                _iconDisplay.transform.localScale *= 2;
+                break;
+            case ItemData.Type.SHOES:
+                break;
+            default:
+                break;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
