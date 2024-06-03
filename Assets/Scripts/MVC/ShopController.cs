@@ -172,7 +172,6 @@ namespace ShopMVC
             {
                 if (_shopModel.TryBuyItem(_player.inventory, _shopModel.currentItemSelected))
                 {
-                    Debug.Log("Buy confirmed new money " + _player.inventory.money + "$");
                     _shopModel.ChangeState(_shopModel.LastState);
                 }
                 else
