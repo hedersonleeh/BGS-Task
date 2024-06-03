@@ -4,15 +4,17 @@ using System.Collections.Generic;
 namespace InventoryMVC
 {
     public delegate void OnInventoryUpdate();
-    public delegate void SwapEvent(ItemData newEquip, ItemData oldEquip);
+    public delegate void SwapEvent(ItemData newEquip);
+    public delegate void UnEquipEvent(ItemData equip);
     public class InventoryModel
     {
-        public ItemData equippedHat { get; private set; }
-        public ItemData equippedHair { get; private set; }
-        public ItemData equippedBody { get; private set; }
+        public static ItemData equippedHat { get; private set; }
+        public static ItemData equippedHair { get; private set; }
+        public static ItemData equippedBody { get; private set; }
 
         public Inventory inventory { get; private set; }
         public SwapEvent onEquip;
+        public UnEquipEvent unEquip;
         public InventoryModel(Inventory inventory)
         {
             this.inventory = inventory;
@@ -20,39 +22,56 @@ namespace InventoryMVC
 
         public void OnItemSelect(ItemSlot item)
         {
-            switch (item.data.type)
+            if (isEquipped(item.data))
             {
-                case ItemData.Type.HAT:
-                    if (item.data.ID != equippedHat.ID)
-                    {
-                        onEquip?.Invoke(item.data, equippedHat);
-                        equippedHat = item.data;
-                    }
-
-                    break;
-                case ItemData.Type.CLOTHES:
-                    if (item.data.ID != equippedBody.ID)
-                    {
-                        onEquip?.Invoke(item.data, equippedBody);
-                        equippedBody = item.data;
-                    }
-
-
-                    break;
-                case ItemData.Type.HAIR:
-                    if (item.data.ID != equippedHair.ID)
-                    {
-                        onEquip?.Invoke(item.data, equippedHair);
-                        equippedHair = item.data;
-                    }
-                    break;
-
+                item.Clear();
+                switch (item.data.type)
+                {
+                    case ItemData.Type.HAT:
+                        equippedHat = default;
+                        break;
+                    case ItemData.Type.CLOTHES:
+                        equippedBody = default;
+                        break;
+                    case ItemData.Type.HAIR:
+                        equippedHair = default;
+                        break;                   
+                }
+                unEquip?.Invoke(item.data);
             }
+            else
+                switch (item.data.type)
+                {
+                    case ItemData.Type.HAT:
+                        if (item.data.ID != equippedHat.ID)
+                        {
+                            equippedHat = item.data;
+                            onEquip?.Invoke(item.data);
+                        }
+                        break;
+                    case ItemData.Type.CLOTHES:
+                        if (item.data.ID != equippedBody.ID)
+                        {
+                            equippedBody = item.data;
+                            onEquip?.Invoke(item.data);
+                        }
+
+
+                        break;
+                    case ItemData.Type.HAIR:
+                        if (item.data.ID != equippedHair.ID)
+                        {
+                            equippedHair = item.data;
+                            onEquip?.Invoke(item.data);
+                        }
+                        break;
+
+                }
         }
 
-        internal bool isEquipped(ItemData item)
+        public static bool isEquipped(ItemData item)
         {
-            return (item.ID == equippedBody.ID || item.ID == equippedHair.ID || item.ID == equippedHat.ID);
+            return item.ID == equippedHat.ID || item.ID == equippedBody.ID || item.ID == equippedHair.ID;
         }
     }
 

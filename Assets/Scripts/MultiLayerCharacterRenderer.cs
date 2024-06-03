@@ -18,6 +18,11 @@ public class MultiLayerCharacterRenderer : MonoBehaviour
         _atlas = atlas;
         lastIndex = -1;
     }
+    public void Clear() 
+    {
+        _renderer.sprite = null;
+        AssingAtlas(null);
+    }
     public void Tint(Color tint)
     {
         _renderer.color = tint;

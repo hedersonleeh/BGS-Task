@@ -13,19 +13,26 @@ namespace InventoryMVC
             _inventoryView = inventoryView;
             _playerClothes = playerClothes;
             _model.onEquip += OnEquip;
+            _model.unEquip += OnUnEquip;
 
         }
         ~InventoryController()
         {
             _model.onEquip -= OnEquip;
+            _model.unEquip -= OnUnEquip;
+
         }
         public void OnOpenInventory()
         {
             _inventoryView.FillItems(_model.inventory.GetItems());
         }
-        private void OnEquip(ItemData newEquip, ItemData oldEquip)
+        private void OnEquip(ItemData newEquip)
         {
             _playerClothes.Equip(newEquip);
+        }
+        private void OnUnEquip(ItemData item)
+        {
+            _playerClothes.UnEquip(item.type);
         }
     }
 }

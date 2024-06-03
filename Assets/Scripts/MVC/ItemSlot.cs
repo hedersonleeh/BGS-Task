@@ -1,4 +1,5 @@
 ﻿using ShopMVC;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -32,15 +33,22 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
         switch (data.type)
         {
             case ItemData.Type.HAT:
-                _iconDisplay.transform.localScale *= 3;
-                _iconDisplay.rectTransform.anchoredPosition -= Vector2.up * 70;
+                _iconDisplay.transform.localScale = Vector3.one * 3;
+                _iconDisplay.rectTransform.anchoredPosition = Vector2.down * 70;
                 break;
             case ItemData.Type.CLOTHES:
-                _iconDisplay.transform.localScale *= 2;
-                break;           
+                _iconDisplay.transform.localScale = Vector3.one * 2;
+                break;
             default:
                 break;
         }
+    }
+
+    public void Clear()
+    {
+        _iconDisplay.sprite = null;
+        _iconDisplay.enabled = false;
+        _nameDisplay.text = "";
     }
 
     public void OnPointerEnter(PointerEventData eventData)

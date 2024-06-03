@@ -45,6 +45,8 @@ namespace ShopMVC
             }
             foreach (var item in items)
             {
+                if (InventoryMVC.InventoryModel.isEquipped(item)) continue;
+
                 var itemSlot = Instantiate(_slotPrefab, content);
                 itemSlot.FillInfo(item);
             }
@@ -96,8 +98,8 @@ namespace ShopMVC
                 case State.CONFIRM:
                     var rt = _scrollRect.content.transform.GetChild(currentItemSelectedIndex);
 
-                    var slot=rt.GetComponent<ItemSlot>();
-                    _Menutitle.text = "PRICE: "+ slot.data.price.ToString()+"$";
+                    var slot = rt.GetComponent<ItemSlot>();
+                    _Menutitle.text = "PRICE: " + slot.data.price.ToString() + "$";
                     break;
                 default:
                     break;

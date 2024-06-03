@@ -321,6 +321,7 @@ MonoBehaviour:
   speed: 2.5
   shotCooldownTime: 0.1
   _invetoryView: {fileID: 0}
+  _previewCamera: {fileID: 0}
 --- !u!50 &8368934708880378866
 Rigidbody2D:
   serializedVersion: 4
@@ -503,7 +504,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -639,8 +640,8 @@ Transform:
   m_Children:
   - {fileID: 4758556576124189651}
   - {fileID: 5328674978581727756}
-  - {fileID: 7845075264101862266}
   - {fileID: 196674695776397110}
+  - {fileID: 7845075264101862266}
   m_Father: {fileID: 4344327085939928739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &5867290772545821149
@@ -653,7 +654,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 923439813
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_SortAtRoot: 1
 --- !u!95 &1251199983219910720
 Animator:

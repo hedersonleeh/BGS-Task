@@ -11,9 +11,9 @@ namespace InventoryMVC
         [SerializeField] private Canvas _mainCanvas;
         [SerializeField] private ScrollRect _scrollRect;
         [SerializeField] private RectTransform _selector;
-        [SerializeField] private RectTransform _bodySlot;
-        [SerializeField] private RectTransform _hatSlot;
-        [SerializeField] private RectTransform _hairSlot;
+        [SerializeField] private ItemSlot _bodySlot;
+        [SerializeField] private ItemSlot _hatSlot;
+        [SerializeField] private ItemSlot _hairSlot;
         List<ItemSlot> _items;
 
         [SerializeField] private ItemSlot _slotPrefab;
@@ -26,11 +26,15 @@ namespace InventoryMVC
             var player = FindObjectOfType<PlayerController>();
             var playerClothes = player.GetComponent<PlayerClothes>();
             _items = new List<ItemSlot>();
-
             _model = new InventoryModel(player.inventory);
             _controller = new InventoryController(this, _model, playerClothes);
             _model.onEquip += SwapItems;
             selectEvent += _model.OnItemSelect;
+            _model.unEquip += OnUnEquip;
+            foreach (Transform child in _scrollRect.content.transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         public void ToggleView(bool value)
@@ -46,6 +50,8 @@ namespace InventoryMVC
         {
             _model.onEquip -= SwapItems;
             selectEvent -= _model.OnItemSelect;
+            _model.unEquip -= OnUnEquip;
+
         }
 
         private void Update()
@@ -54,25 +60,21 @@ namespace InventoryMVC
                 ToggleView(false);
         }
 
-        public override void OnItemSelect(ItemSlot slot)
-        {
-            selectEvent?.Invoke(slot);
-        }
-        public override void OnItemHover(ItemSlot slot)
-        {
-            hoverEvent?.Invoke(slot);
-        }
         public void FillItems(List<ItemData> items)
         {
-            foreach (Transform child in content.transform)
+            foreach (var item in _items)
             {
-                Destroy(child.gameObject);
+                Destroy(item.gameObject);
             }
             _items.Clear();
+
             foreach (var item in items)
             {
-                if (_model.isEquipped(item)) continue;
-                
+                if (InventoryModel.isEquipped(item))
+                {
+                    continue;
+                }
+
                 var itemSlot = Instantiate(_slotPrefab, content);
                 itemSlot.FillInfo(item, false);
                 _items.Add(itemSlot);
@@ -85,47 +87,42 @@ namespace InventoryMVC
             var rt = _scrollRect.content.transform.GetChild(index);
             OnItemHover(rt.GetComponent<ItemSlot>());
         }
-        public void SwapItems(ItemData newItem, ItemData oldItem)
+
+        public void SwapItems(ItemData newItem)
         {
             var item1 = _items.Find(x => newItem.ID == x.data.ID);
-            if (!string.IsNullOrEmpty(oldItem.ID))
-            {
-                var item2 = _items.Find(x => oldItem.ID == x.data.ID);
-                StartCoroutine(MoveToSmooth(item2, _scrollRect.content));
-            }
+
             if (item1)
+            {
                 switch (newItem.type)
                 {
                     case ItemData.Type.HAT:
-                        StartCoroutine(MoveToSmooth(item1, _hatSlot));
+                        _hatSlot.FillInfo(item1.data, false);
                         break;
                     case ItemData.Type.CLOTHES:
-                        StartCoroutine(MoveToSmooth(item1, _bodySlot));
+                        _bodySlot.FillInfo(item1.data, false);
                         break;
                     case ItemData.Type.HAIR:
-                        StartCoroutine(MoveToSmooth(item1, _hairSlot));
+                        _hairSlot.FillInfo(item1.data, false);
                         break;
                 }
-        }
-        IEnumerator MoveToSmooth(ItemSlot item, RectTransform targetRectTranform)
-        {
-            var rt = item.GetComponent<RectTransform>();
-            rt.transform.parent = _mainCanvas.transform;
-            var initialPosition = rt.position;
-            var finalPosition = targetRectTranform.transform.position;
-            var stepTime = 0f;
-            var duration = 0.25f;
-            AnimationCurve smooth = AnimationCurve.EaseInOut(0, 0, 1, 1);
-            while (stepTime < duration)
-            {
-                stepTime += Time.smoothDeltaTime;
-                var fixedDuration = stepTime / duration;
-                rt.position = Vector3.Lerp(initialPosition, finalPosition, smooth.Evaluate(fixedDuration));
-                yield return new WaitForEndOfFrame();
+                UpdateView();
             }
-            rt.position = finalPosition;
-            item.transform.parent = targetRectTranform;
         }
 
+        private void OnUnEquip(ItemData equip)
+        {
+            var item = _items.Find(x => equip.ID == x.data.ID);
+           
+            UpdateView();
+        }
+
+        private void UpdateView()
+        {
+            foreach (var item in _items)
+            {
+                item.gameObject.SetActive(!InventoryModel.isEquipped(item.data));
+            }            
+        }
     }
 }

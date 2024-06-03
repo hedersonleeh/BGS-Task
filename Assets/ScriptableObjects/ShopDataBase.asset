@@ -21,6 +21,14 @@ MonoBehaviour:
     description: 'Sturdy Plate Armor: Heavy steel protection against powerful attacks.'
     tint: {r: 0.645283, g: 0.37805793, b: 0, a: 1}
     _atlas: {fileID: 2800000, guid: e5a21320e05cc664fa1ac8b727ba1271, type: 3}
+  - icon: {fileID: -59737039, guid: e5a21320e05cc664fa1ac8b727ba1271, type: 3}
+    type: 1
+    quantity: 1
+    price: 50
+    displayName: Armor
+    description: 'Sturdy Plate Armor: Heavy steel protection against powerful attacks.'
+    tint: {r: 0, g: 0.77191854, b: 1, a: 1}
+    _atlas: {fileID: 2800000, guid: e5a21320e05cc664fa1ac8b727ba1271, type: 3}
   - icon: {fileID: 1296648633, guid: f5f07bac3dbb6cc429503e06da2cb8b0, type: 3}
     type: 1
     quantity: 1
@@ -29,6 +37,14 @@ MonoBehaviour:
     description: 'Sturdy Plate Armor: Heavy steel protection against powerful attacks.'
     tint: {r: 1, g: 1, b: 1, a: 1}
     _atlas: {fileID: 2800000, guid: f5f07bac3dbb6cc429503e06da2cb8b0, type: 3}
+  - icon: {fileID: 1296648633, guid: f5f07bac3dbb6cc429503e06da2cb8b0, type: 3}
+    type: 1
+    quantity: 1
+    price: 200
+    displayName: Armor
+    description: 'Sturdy Plate Armor: Heavy steel protection against powerful attacks.'
+    tint: {r: 0.82641506, g: 0.14813091, b: 0.18537012, a: 1}
+    _atlas: {fileID: 2800000, guid: f5f07bac3dbb6cc429503e06da2cb8b0, type: 3}
   - icon: {fileID: -1289296908, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
     type: 1
     quantity: 1
@@ -36,6 +52,14 @@ MonoBehaviour:
     displayName: Underware
     description: 'Silk Underwear: Comfortable and light, offering basic protection.'
     tint: {r: 1, g: 1, b: 1, a: 1}
+    _atlas: {fileID: 2800000, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
+  - icon: {fileID: -1289296908, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
+    type: 1
+    quantity: 1
+    price: 150
+    displayName: Underware
+    description: 'Silk Underwear: Comfortable and light, offering basic protection.'
+    tint: {r: 0, g: 0.90868425, b: 1, a: 1}
     _atlas: {fileID: 2800000, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
   - icon: {fileID: -1289296908, guid: 4b7fcdb7fce2e9e4ca0403dd6b0b0b21, type: 3}
     type: 1
@@ -61,6 +85,22 @@ MonoBehaviour:
     description: 'Enchanted Hat: Boosts magic power and spellcasting ability.'
     tint: {r: 1, g: 1, b: 1, a: 1}
     _atlas: {fileID: 2800000, guid: 3a8d120bb30beda4baf4653fad592fa5, type: 3}
+  - icon: {fileID: 255868905, guid: 3a8d120bb30beda4baf4653fad592fa5, type: 3}
+    type: 0
+    quantity: 1
+    price: 55
+    displayName: Magic hat
+    description: 'Enchanted Hat: Boosts magic power and spellcasting ability.'
+    tint: {r: 0, g: 1, b: 0.88685036, a: 1}
+    _atlas: {fileID: 2800000, guid: 3a8d120bb30beda4baf4653fad592fa5, type: 3}
+  - icon: {fileID: 255868905, guid: 3a8d120bb30beda4baf4653fad592fa5, type: 3}
+    type: 0
+    quantity: 1
+    price: 55
+    displayName: Magic hat
+    description: 'Enchanted Hat: Boosts magic power and spellcasting ability.'
+    tint: {r: 0.81886786, g: 0, b: 0, a: 1}
+    _atlas: {fileID: 2800000, guid: 3a8d120bb30beda4baf4653fad592fa5, type: 3}
   - icon: {fileID: 209913004, guid: 92df12ce5b298a344afe56889ed48277, type: 3}
     type: 0
     quantity: 1
@@ -84,6 +124,22 @@ MonoBehaviour:
     displayName: Hair
     description: 'Lustrous Hair: Shiny, healthy, and full of volume.'
     tint: {r: 0.7056604, g: 0, b: 0.5972893, a: 1}
+    _atlas: {fileID: 2800000, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
+  - icon: {fileID: 35467022, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
+    type: 2
+    quantity: 1
+    price: 100
+    displayName: Hair
+    description: 'Lustrous Hair: Shiny, healthy, and full of volume.'
+    tint: {r: 0.97735846, g: 0.91541535, b: 0, a: 1}
+    _atlas: {fileID: 2800000, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
+  - icon: {fileID: 35467022, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
+    type: 2
+    quantity: 1
+    price: 100
+    displayName: Hair
+    description: 'Lustrous Hair: Shiny, healthy, and full of volume.'
+    tint: {r: 0.97735846, g: 0.91541535, b: 0, a: 1}
     _atlas: {fileID: 2800000, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
   - icon: {fileID: 35467022, guid: b79a826d3a2cff9408b86601f42c7e7e, type: 3}
     type: 2
