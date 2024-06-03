@@ -13,17 +13,20 @@ namespace ShopMVC
 
         private void Awake()
         {
-            _model = new ShopModel();
             var player = FindObjectOfType<PlayerController>();
-            _controller = new ShopController(player, _model, _view);
-            _controller.onShopCloseEvent += CloseShop;
 
-            _view.FillItems(_database.GetItems());
+            _model = new ShopModel(_database.GetItems());
+            _controller = new ShopController(player, _model, _view);
+
+            _view.FillItems(_model.inventory);
             _view.gameObject.SetActive(false);
+
+            _controller.onShopCloseEvent += CloseShop;
         }
         private void OnDestroy()
         {
             _controller.onShopCloseEvent -= CloseShop;
+
         }
         [ContextMenu("Test Open")]
         public void OpenShop()
@@ -31,7 +34,6 @@ namespace ShopMVC
             _open = true;
             _view.gameObject.SetActive(_open);
             GlobalVariables.PlayerIsBusy = true;
-
         }
         [ContextMenu("Test close")]
         public void CloseShop()
@@ -53,6 +55,5 @@ namespace ShopMVC
             if (_open)
                 _controller.InputUpdate();
         }
-
     }
 }

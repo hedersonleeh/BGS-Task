@@ -14,9 +14,11 @@ namespace ShopMVC
         [SerializeField] private RectTransform _selector;
         [SerializeField] private ItemSlot _slotPrefab;
         [SerializeField] private GameObject[] _shopScreens;
-        [SerializeField] private Image _itemIconConfirmationWindow;
-        [SerializeField] private TextMeshProUGUI _itemDescriptionDisplay;
-        [SerializeField] private TextMeshProUGUI _itemNameDisplay;
+        [SerializeField] private ConfirmationWindow _confirmationWindow;
+        [SerializeField] private TextMeshProUGUI _Menutitle;
+        [SerializeField] private TextMeshProUGUI _moneyText;
+        [SerializeField] private Button _optionBuyButton;
+        [SerializeField] private Button _optionSellButton;
 
 
         public RectTransform content { get { return _scrollRect.content; } }
@@ -32,7 +34,7 @@ namespace ShopMVC
             _shopScreens[0].gameObject.SetActive(true);
         }
         public void FillItems(List<ItemData> items)
-        {
+        {       
             foreach (Transform child in content.transform)
             {
                 if (child == _selector) continue;
@@ -62,13 +64,10 @@ namespace ShopMVC
             OnItemHover(rt.GetComponent<ItemSlot>());
         }
 
-        public void ShowConfirmationWindow(ItemSlot slot)
+        public void ShowConfirmationWindow(ItemSlot slot,string confirmMessage,System.Action confirmCallback,System.Action cancelCallback)
         {
-            _itemIconConfirmationWindow.sprite = slot.data.icon;
-            _itemIconConfirmationWindow.color = slot.data.tint;
-            _itemIconConfirmationWindow.enabled = slot.data.icon != null;
-            _itemNameDisplay.text= slot.data.displayName;
-            _itemDescriptionDisplay.text = slot.data.description;
+            _confirmationWindow.Updateinfo(confirmMessage,slot.data);
+            _confirmationWindow.AssingCallbacks(confirmCallback, cancelCallback);
         }
        
         public void OnShopStateChange(State newState)
@@ -78,7 +77,34 @@ namespace ShopMVC
                 screen.gameObject.SetActive(false);
             }
             _shopScreens[(int)newState].gameObject.SetActive(true);
-            
+            switch (newState)
+            {
+                case State.OPTIONS:
+                    _Menutitle.text = "Shopkeeper";
+                    break;
+                case State.BUY:
+                    _Menutitle.text = "Shop";
+                    break;
+                case State.SELL:
+                    _Menutitle.text = "Selling";
+                    break;
+                case State.CONFIRM:
+                    _Menutitle.text = "Confirmation";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void DisableButtons(bool disableBuyButton, bool disableSell)
+        {
+            _optionBuyButton.interactable = !disableBuyButton;
+            _optionSellButton.interactable = !disableSell;
+        }
+        public void UpdatePlayerMoney(string money)
+        {
+            _moneyText.text = "Money: " + money + "$";
+
         }
 
     }

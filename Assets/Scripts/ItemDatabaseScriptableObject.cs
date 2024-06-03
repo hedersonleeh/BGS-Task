@@ -6,8 +6,8 @@ public class ItemDatabaseScriptableObject : ScriptableObject
 {
     [SerializeField]private List<ItemData> _itemDatabase;
 
-    public List<ItemData> GetItems() => _itemDatabase;
-    public List<ItemData> GetItemsByType(ItemData.Type type) =>  _itemDatabase.FindAll(x=>x.type == type);
+    public List<ItemData> GetItems() =>new List<ItemData>( _itemDatabase);
+    public List<ItemData> GetItemsByType(ItemData.Type type) => new List<ItemData>(  _itemDatabase.FindAll(x=>x.type == type));
     public ItemData GetItem(string id)
     {
       var found=  _itemDatabase.Find((item) => item.ID == id);

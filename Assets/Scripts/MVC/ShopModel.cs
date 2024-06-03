@@ -13,32 +13,44 @@ namespace ShopMVC
     }
     public class ShopModel
     {
-        List<ItemData> _inventory;
+        public List<ItemData> inventory { get; private set; }
         public State CurrentState { get; private set; } = State.OPTIONS;
+        public State LastState { get; private set; } = State.OPTIONS;
         public delegate void OnStateChange(State newState);
+        public delegate void OnInventoryUpdate();
         public OnStateChange onStateChange;
+        public OnInventoryUpdate onInventoryUpdate;
         public ItemData currentItemSelected;
+
+        public ShopModel(List<ItemData> inventory)
+        {
+            this.inventory = inventory;
+        }
 
         public void ChangeState(State newState)
         {
-            var oldState = CurrentState;
+            LastState = CurrentState;
             CurrentState = newState;
             onStateChange?.Invoke(newState);
         }
+         
         public bool TryBuyItem(Inventory playerInvetory, ItemData item)
         {
             if(playerInvetory.money >= item.price)
             {
                 playerInvetory.AddItem(item);
                 playerInvetory.SpendMoney( item.price);
-                
+                inventory.Remove(item);
+                onInventoryUpdate?.Invoke();
                 return true;
             }
             return false;
         }
-        public void SellItem(ItemData item)
+        public void SellItem(Inventory playerInvetory,ItemData item)
         {
-
+            playerInvetory.DiscardItem(item.ID);
+            inventory.Add(item);
+            onInventoryUpdate?.Invoke();
         }
     }
 }
