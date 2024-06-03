@@ -37,9 +37,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerClickHandle
                 break;
             case ItemData.Type.CLOTHES:
                 _iconDisplay.transform.localScale *= 2;
-                break;
-            case ItemData.Type.SHOES:
-                break;
+                break;           
             default:
                 break;
         }

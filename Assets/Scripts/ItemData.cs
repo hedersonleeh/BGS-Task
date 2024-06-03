@@ -7,7 +7,7 @@ public struct ItemData
     {
         HAT,
         CLOTHES,
-        SHOES,
+        HAIR,
     }
     public string ID => icon.name +displayName+tint.ToString();
     public Sprite icon;
