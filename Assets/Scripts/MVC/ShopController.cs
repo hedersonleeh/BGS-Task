@@ -32,8 +32,6 @@ namespace ShopMVC
 
         }
 
-
-
         public void InputUpdate()
         {
             if (Input.GetButtonDown("Horizontal"))

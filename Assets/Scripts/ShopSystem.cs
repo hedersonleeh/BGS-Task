@@ -27,24 +27,26 @@ namespace ShopMVC
         {
             _controller.onShopCloseEvent -= CloseShop;
         }
-        [ContextMenu("Test Open")]
+
         public void OpenShop()
         {
             _open = true;
             _controller.OpenCloseShop(_open);
             GlobalVariables.PlayerIsBusy = true;
         }
-        [ContextMenu("Test close")]
+
         public void CloseShop()
         {
             _open = false;
             _controller.OpenCloseShop(_open);
             GlobalVariables.PlayerIsBusy = false;
         }
+
         public void GoToState(int newState)
         {
             _model.ChangeState((State)newState);
         }
+
         private void Update()
         {
             if (_open)
